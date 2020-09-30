@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Table } from 'reactstrap'
 
 export default class PostsList extends React.Component {
   constructor(props) {
@@ -29,8 +30,11 @@ export default class PostsList extends React.Component {
     const { posts } = this.state;
     return (
       <div>
-        <h3>All Posts</h3>
-        <table>
+        <div>
+          <h3 className="col-sm-6 float-left">All Posts</h3>
+          <Link to="/posts/new" className="btn btn-primary float-right">Create</Link>
+        </div>
+        <table className="table">
           <thead>
             <tr>
               <th>ID</th>
@@ -54,12 +58,10 @@ export default class PostsList extends React.Component {
                   <td>{post.description}</td>
                   <td>{post.is_published ? 'Yes' : 'No' }</td>
                   <td>
-                    <button onClick={() => this.handleDelete(post.id) }>
+                    <button onClick={() => this.handleDelete(post.id) } className="btn btn-danger">
                       Delete
                     </button>
-                  </td>
-                  <td>
-                    <Link to={`/posts/${post.id}/edit`}>
+                    <Link to={`/posts/${post.id}/edit`} className="btn btn-success">
                       Edit
                     </Link>
                   </td>
